@@ -68,7 +68,7 @@ def _decode_5104(data):
             text_size = struct.unpack(
                 '<h', data[start_byte:start_byte + 2])[0]
             start_byte += 2
-            text.append(data[start_byte:start_byte + text_size].decode('utf8'))
+            text.append(data[start_byte:start_byte + text_size].decode('latin-1'))
             start_byte += text_size
             start_byte += 6
         elif tag == b'$u':
@@ -130,7 +130,7 @@ def _decode_25739(data):
         start_byte += n_bytes
         n_bytes = var_size
         return {'file_path': data[start_byte:
-                                  start_byte + n_bytes].decode('utf-8')}
+                                  start_byte + n_bytes].decode('latin-1')}
 
 
 def _decode_35698(data):
@@ -329,7 +329,7 @@ class SP(Format):
             # the description is fixed to 40 bytes
             n_bytes = 40
             description = content[
-                start_byte:start_byte + n_bytes].decode('utf8')
+                start_byte:start_byte + n_bytes].decode('latin-1')
 
             meta = {'signature': signature,
                     'description': description}
